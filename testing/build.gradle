@@ -1,7 +1,7 @@
 
 dependencies {
     compile 'org.testng:testng:6.13.1'
-    compile (":ui_builder")
+    compile project(":ui_builder")
 }
 
 test {
