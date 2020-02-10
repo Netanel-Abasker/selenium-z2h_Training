@@ -3,3 +3,10 @@ dependencies {
     compile 'org.testng:testng:6.13.1'
     compile (":ui_builder")
 }
+
+test {
+    useTestNG(){
+        useDefaultListeners = true
+        suites 'src/main/resources/suite.xml'
+    }
+}
