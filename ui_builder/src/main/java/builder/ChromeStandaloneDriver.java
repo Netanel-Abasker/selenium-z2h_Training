@@ -2,7 +2,9 @@ package builder;
 
 import java.util.concurrent.TimeUnit;
 
+import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,9 +23,9 @@ public class ChromeStandaloneDriver implements ISeleniumDriver {
     private ChromeOptions setChromeCapabilities(){
         ChromeOptions chromeOptions = new ChromeOptions();
         logger.info("Set capability to accept SSL Connections");
-        //TODO:
+        chromeOptions.setAcceptInsecureCerts(true);
         logger.info("Set capability to work with local " + BROWSER_LOCALE_DEFAULT);
-        //TODO:
+        chromeOptions.addArguments("--lang=" + BROWSER_LOCALE_DEFAULT);
         return chromeOptions;
     }
 
@@ -31,9 +33,9 @@ public class ChromeStandaloneDriver implements ISeleniumDriver {
         logger.info("Will Start Selenium Chrome Driver/Client");
         ChromeOptions chromeOptions = setChromeCapabilities();
         logger.info("Setup Chrome Driver with Driver Manager");
-        //TODO:
+        ChromeDriverManager.chromedriver().setup();
         logger.info("Set Chrome with capabilities");
-        //TODO:
+        this.driver = new ChromeDriver(chromeOptions);
         logger.info("Set page load time to be " + PAGE_LOAD_TIME_SEC + " seconds");
         this.driver.manage().timeouts().pageLoadTimeout(PAGE_LOAD_TIME_SEC, TimeUnit.SECONDS);
     }
