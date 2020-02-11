@@ -25,17 +25,20 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public void click(){
+    public LoginPage click(){
         commitButton.click();
+        return this;
     }
 
-    public void inputUserName(String input){
+    public LoginPage inputUserName(String input){
         inputUserName.clear();
         inputUserName.sendKeys(input);
+        return this;
     }
 
-    public void inputPassword(String input){
+    public LoginPage inputPassword(String input){
         inputPassword.clear();
         inputPassword.sendKeys(input);
+        return this;
     }
 }
