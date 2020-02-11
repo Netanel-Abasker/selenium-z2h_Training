@@ -12,9 +12,9 @@ public class TestRunner {
         TestNG testng ;
         List<XmlSuite> suite;
         File xmlFile;
-        String xmlFilePath;
-        if (args.length > 0) {
-            xmlFilePath = args[0];
+        String xmlFilePath = System.getProperty("testNGxmlPath");
+        System.out.println(xmlFilePath);
+        if (xmlFilePath != null) {
             testng = new TestNG();
             xmlFile = new File(xmlFilePath);
             if (xmlFile.exists()) {
@@ -26,5 +26,4 @@ public class TestRunner {
             System.out.println("ERROR : Resource path to xml file was not provided");
         }
     }
-
 }
