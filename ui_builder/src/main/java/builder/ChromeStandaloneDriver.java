@@ -42,7 +42,9 @@ public class ChromeStandaloneDriver implements ISeleniumDriver {
 
     @Override
     public WebDriver getDriver() {
-        //TODO:
+        if (this.driver != null){
+            return driver;
+        }
         return null;
     }
 }
