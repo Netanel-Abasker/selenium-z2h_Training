@@ -1,12 +1,31 @@
 
+plugins {
+    id "com.github.johnrengelman.shadow" version "5.0.0"
+}
+
+
 dependencies {
     compile 'org.testng:testng:6.13.1'
     compile project(":ui_builder")
+    compile "org.seleniumhq.selenium:selenium-api:3.13.0"
 }
 
-test {
-    useTestNG(){
-        useDefaultListeners = true
-        suites 'src/main/resources/suite.xml'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+artifacts {
+    archives shadowJar
+}
+
+jar {
+    enabled = false
+    dependsOn(shadowJar { classifier = null })
+}
+
+shadowJar {
+    zip64 true
+    manifest {
+        attributes 'Main-Class': 'TestRunner'
     }
 }
+
+
